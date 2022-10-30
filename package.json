@@ -17,10 +17,12 @@
     "/oclif.manifest.json"
   ],
   "dependencies": {
+    "@google-cloud/local-auth": "2.1.0",
     "@oclif/core": "^1.19.1",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.1.4",
     "@octokit/core": "^4.1.0",
+    "googleapis": "105",
     "mem-fs": "^2.2.1",
     "mem-fs-editor": "^9.5.0"
   },

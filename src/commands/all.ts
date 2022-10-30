@@ -20,7 +20,7 @@ export default class All extends Command {
   public async run(): Promise<void> {
     // const {args, flags} = await this.parse(IssuesAll)
     const octokit = new Octokit({
-      auth: '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',
+      auth: '------add token here---------',
     })
     const result = await octokit.request('GET /issues').catch(error => this.log(error))
 
