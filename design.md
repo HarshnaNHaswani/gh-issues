@@ -1,10 +1,15 @@
+## Beta Links
 ```
 npx issues all
 npx issues create
 npx issues add reminder
 ```
 
+## Setup GitHub Access token
+`https://github.com/settings/tokens`
 
+
+## Setup for Google Reminders
 ```
 Create Project: https://developers.google.com/workspace/guides/create-project
 Enable API: https://console.cloud.google.com/flows/enableapi?apiid=calendar-json.googleapis.com

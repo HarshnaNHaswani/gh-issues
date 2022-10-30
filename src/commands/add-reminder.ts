@@ -8,24 +8,20 @@ const {authenticate: auth} = require('@google-cloud/local-auth')
 
 import {google} from 'googleapis'
 export default class AddReminder extends Command {
-  static description = 'add reminder for your issues'
+  static description = 'add reminder for your issues [BROKEN](error in auth)'
 
   static examples = [
     '<%= config.bin %> <%= command.id %>',
   ]
 
   static flags = {
-    // flag with a value (-n, --name=VALUE)
-    name: Flags.string({char: 'n', description: 'name to print'}),
     // flag with no value (-f, --force)
     force: Flags.boolean({char: 'f'}),
   }
 
-  static args = [{name: 'file'}]
-
   public async run(): Promise<void> {
     const octokit = new Octokit({
-      auth: '------add token here---------',
+      auth: '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',
     })
     const result = await octokit.request('GET /issues').catch(error => this.log(error)).catch(error => this.error(error))
 

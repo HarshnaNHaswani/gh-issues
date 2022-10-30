@@ -44,66 +44,30 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`gh-issues hello PERSON`](#gh-issues-hello-person)
-* [`gh-issues hello world`](#gh-issues-hello-world)
-* [`gh-issues help [COMMAND]`](#gh-issues-help-command)
-* [`gh-issues plugins`](#gh-issues-plugins)
-* [`gh-issues plugins:install PLUGIN...`](#gh-issues-pluginsinstall-plugin)
-* [`gh-issues plugins:inspect PLUGIN...`](#gh-issues-pluginsinspect-plugin)
-* [`gh-issues plugins:install PLUGIN...`](#gh-issues-pluginsinstall-plugin-1)
-* [`gh-issues plugins:link PLUGIN`](#gh-issues-pluginslink-plugin)
-* [`gh-issues plugins:uninstall PLUGIN...`](#gh-issues-pluginsuninstall-plugin)
-* [`gh-issues plugins:uninstall PLUGIN...`](#gh-issues-pluginsuninstall-plugin-1)
-* [`gh-issues plugins:uninstall PLUGIN...`](#gh-issues-pluginsuninstall-plugin-2)
-* [`gh-issues plugins update`](#gh-issues-plugins-update)
+* [`issues help [COMMAND]`](#issues-help-command)
+* [`issues all`](#issues-all)
+* [`issues create`](#issues-create)
+* [`issues all`](#issues-add-reminder)
+* [`issues plugins`](#issues-plugins)
+* [`issues plugins:install PLUGIN...`](#issues-pluginsinstall-plugin)
+* [`issues plugins:inspect PLUGIN...`](#issues-pluginsinspect-plugin)
+* [`issues plugins:install PLUGIN...`](#issues-pluginsinstall-plugin-1)
+* [`issues plugins:link PLUGIN`](#issues-pluginslink-plugin)
+* [`issues plugins:uninstall PLUGIN...`](#issues-pluginsuninstall-plugin)
+* [`issues plugins:uninstall PLUGIN...`](#issues-pluginsuninstall-plugin-1)
+* [`issues plugins:uninstall PLUGIN...`](#issues-pluginsuninstall-plugin-2)
+* [`issues plugins update`](#issues-plugins-update)
 
-## `gh-issues hello PERSON`
 
-Say hello
 
-```
-USAGE
-  $ gh-issues hello [PERSON] -f <value>
 
-ARGUMENTS
-  PERSON  Person to say hello to
+## `issues help [COMMAND]`
 
-FLAGS
-  -f, --from=<value>  (required) Who is saying hello
-
-DESCRIPTION
-  Say hello
-
-EXAMPLES
-  $ oex hello friend --from oclif
-  hello friend from oclif! (./src/commands/hello/index.ts)
-```
-
-_See code: [dist/commands/hello/index.ts](https://github.com/HarshnaNHaswani/github-issues/blob/v0.0.0/dist/commands/hello/index.ts)_
-
-## `gh-issues hello world`
-
-Say hello world
+Display help for issues.
 
 ```
 USAGE
-  $ gh-issues hello world
-
-DESCRIPTION
-  Say hello world
-
-EXAMPLES
-  $ gh-issues hello world
-  hello world! (./src/commands/hello/world.ts)
-```
-
-## `gh-issues help [COMMAND]`
-
-Display help for gh-issues.
-
-```
-USAGE
-  $ gh-issues help [COMMAND] [-n]
+  $ issues help [COMMAND] [-n]
 
 ARGUMENTS
   COMMAND  Command to show help for.
@@ -112,18 +76,98 @@ FLAGS
   -n, --nested-commands  Include all nested commands in the output.
 
 DESCRIPTION
-  Display help for gh-issues.
+  Display help for issues.
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.16/src/commands/help.ts)_
 
-## `gh-issues plugins`
+```
+
+## `issues all  [COMMAND]`
+
+USAGE
+  $ issues all [-c <value>] [-f]
+
+FLAGS
+  -c, --columns=<value>  [NOT IMPLEMENTED] specify columns to be displayed: url, title, body, comments_url, labels, repository
+  -f, --force
+
+DESCRIPTION
+  Get all your issues
+
+EXAMPLES
+  $ issues all
+```
+_See code: [dist/commands/all.ts](/dist/commands/all.js)_
+
+## `issues create  [COMMAND]`
+You can either use flags or arguments or a mix of both
+
+If neither is provided, you'll be prompted for required fields (owner, repo, title)
+```
+USAGE
+  $ issues create [OWNER] [REPO] [TITLE] [BODY] [-o <value>] [-r <value>] [-t <value>] [-b <value>] [-m <value>] [-l <value>] [-a <value>] [-f]
+
+ARGUMENTS
+  OWNER  owner of the issue
+  REPO   GitHub repository
+  TITLE  title of the issue
+  BODY   content of the issue
+
+FLAGS
+  -a, --assignees=<value>  assignee1,assignee2 e.g. jKamala,petejames,
+  -b, --body=<value>       content of the issue
+  -f, --force
+  -l, --labels=<value>     label1,label2: bug,good first issue,
+  -m, --milestone=<value>  milestone of the issue
+  -o, --owner=<value>      owner of the issue
+  -r, --repo=<value>       GitHub repository
+  -t, --title=<value>      title of the issue
+
+DESCRIPTION
+  create a new issue
+  SYNTAX
+  → issues create
+  → issues create -a, --assignees=<value>, -b, --body=<value>,-f, --force,[ -l, --labels]=<value>, [-m|--milestone]=<value> [-o|--owner]=<value> [-r|--repo]=<value> [-t
+  |--title]=<value>
+  → issues create [OWNER] [REPO] [TITLE] [BODY]
+
+EXAMPLES
+  $ issues create
+```
+_See code: [dist/commands/create.ts](/dist/commands/create.js)_
+## `issues add-reminder  [COMMAND]`
+
+- See [Design.md](/design.md) to add one-time setup for google reminder 
+- List  existing events
+- adds event for all your current issues
+- Needs update:
+  * fix login error
+  * customize start/end date
+  * update existing event when this command is called again
+
+```
+USAGE
+  $ issues add-reminder [-f]
+
+FLAGS
+  -f, --force
+
+DESCRIPTION
+  add reminder for your issues [BROKEN](error in auth)
+
+EXAMPLES
+  $ issues add-reminder
+```
+_See code: [dist/commands/add-reminder.ts](/dist/commands/add-reminder.js)_
+
+## `issues plugins`
 
 List installed plugins.
 
 ```
 USAGE
-  $ gh-issues plugins [--core]
+  $ issues plugins [--core]
 
 FLAGS
   --core  Show core plugins.
@@ -132,18 +176,18 @@ DESCRIPTION
   List installed plugins.
 
 EXAMPLES
-  $ gh-issues plugins
+  $ issues plugins
 ```
 
 _See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.1.4/src/commands/plugins/index.ts)_
 
-## `gh-issues plugins:install PLUGIN...`
+## `issues plugins:install PLUGIN...`
 
 Installs a plugin into the CLI.
 
 ```
 USAGE
-  $ gh-issues plugins:install PLUGIN...
+  $ issues plugins:install PLUGIN...
 
 ARGUMENTS
   PLUGIN  Plugin to install.
@@ -165,23 +209,23 @@ DESCRIPTION
 
 
 ALIASES
-  $ gh-issues plugins add
+  $ issues plugins add
 
 EXAMPLES
-  $ gh-issues plugins:install myplugin 
+  $ issues plugins:install myplugin 
 
-  $ gh-issues plugins:install https://github.com/someuser/someplugin
+  $ issues plugins:install https://github.com/someuser/someplugin
 
-  $ gh-issues plugins:install someuser/someplugin
+  $ issues plugins:install someuser/someplugin
 ```
 
-## `gh-issues plugins:inspect PLUGIN...`
+## `issues plugins:inspect PLUGIN...`
 
 Displays installation properties of a plugin.
 
 ```
 USAGE
-  $ gh-issues plugins:inspect PLUGIN...
+  $ issues plugins:inspect PLUGIN...
 
 ARGUMENTS
   PLUGIN  [default: .] Plugin to inspect.
@@ -194,16 +238,16 @@ DESCRIPTION
   Displays installation properties of a plugin.
 
 EXAMPLES
-  $ gh-issues plugins:inspect myplugin
+  $ issues plugins:inspect myplugin
 ```
 
-## `gh-issues plugins:install PLUGIN...`
+## `issues plugins:install PLUGIN...`
 
 Installs a plugin into the CLI.
 
 ```
 USAGE
-  $ gh-issues plugins:install PLUGIN...
+  $ issues plugins:install PLUGIN...
 
 ARGUMENTS
   PLUGIN  Plugin to install.
@@ -225,23 +269,23 @@ DESCRIPTION
 
 
 ALIASES
-  $ gh-issues plugins add
+  $ issues plugins add
 
 EXAMPLES
-  $ gh-issues plugins:install myplugin 
+  $ issues plugins:install myplugin 
 
-  $ gh-issues plugins:install https://github.com/someuser/someplugin
+  $ issues plugins:install https://github.com/someuser/someplugin
 
-  $ gh-issues plugins:install someuser/someplugin
+  $ issues plugins:install someuser/someplugin
 ```
 
-## `gh-issues plugins:link PLUGIN`
+## `issues plugins:link PLUGIN`
 
 Links a plugin into the CLI for development.
 
 ```
 USAGE
-  $ gh-issues plugins:link PLUGIN
+  $ issues plugins:link PLUGIN
 
 ARGUMENTS
   PATH  [default: .] path to plugin
@@ -259,16 +303,16 @@ DESCRIPTION
 
 
 EXAMPLES
-  $ gh-issues plugins:link myplugin
+  $ issues plugins:link myplugin
 ```
 
-## `gh-issues plugins:uninstall PLUGIN...`
+## `issues plugins:uninstall PLUGIN...`
 
 Removes a plugin from the CLI.
 
 ```
 USAGE
-  $ gh-issues plugins:uninstall PLUGIN...
+  $ issues plugins:uninstall PLUGIN...
 
 ARGUMENTS
   PLUGIN  plugin to uninstall
@@ -281,17 +325,17 @@ DESCRIPTION
   Removes a plugin from the CLI.
 
 ALIASES
-  $ gh-issues plugins unlink
-  $ gh-issues plugins remove
+  $ issues plugins unlink
+  $ issues plugins remove
 ```
 
-## `gh-issues plugins:uninstall PLUGIN...`
+## `issues plugins:uninstall PLUGIN...`
 
 Removes a plugin from the CLI.
 
 ```
 USAGE
-  $ gh-issues plugins:uninstall PLUGIN...
+  $ issues plugins:uninstall PLUGIN...
 
 ARGUMENTS
   PLUGIN  plugin to uninstall
@@ -304,17 +348,17 @@ DESCRIPTION
   Removes a plugin from the CLI.
 
 ALIASES
-  $ gh-issues plugins unlink
-  $ gh-issues plugins remove
+  $ issues plugins unlink
+  $ issues plugins remove
 ```
 
-## `gh-issues plugins:uninstall PLUGIN...`
+## `issues plugins:uninstall PLUGIN...`
 
 Removes a plugin from the CLI.
 
 ```
 USAGE
-  $ gh-issues plugins:uninstall PLUGIN...
+  $ issues plugins:uninstall PLUGIN...
 
 ARGUMENTS
   PLUGIN  plugin to uninstall
@@ -327,17 +371,17 @@ DESCRIPTION
   Removes a plugin from the CLI.
 
 ALIASES
-  $ gh-issues plugins unlink
-  $ gh-issues plugins remove
+  $ issues plugins unlink
+  $ issues plugins remove
 ```
 
-## `gh-issues plugins update`
+## `issues plugins update`
 
 Update installed plugins.
 
 ```
 USAGE
-  $ gh-issues plugins update [-h] [-v]
+  $ issues plugins update [-h] [-v]
 
 FLAGS
   -h, --help     Show CLI help.
@@ -347,8 +391,6 @@ DESCRIPTION
   Update installed plugins.
 ```
 <!-- commandsstop -->
-* [`oex hello PERSON`](#oex-hello-person)
-* [`oex hello world`](#oex-hello-world)
 * [`oex help [COMMAND]`](#oex-help-command)
 * [`oex plugins`](#oex-plugins)
 * [`oex plugins:inspect PLUGIN...`](#oex-pluginsinspect-plugin)
@@ -356,46 +398,6 @@ DESCRIPTION
 * [`oex plugins:link PLUGIN`](#oex-pluginslink-plugin)
 * [`oex plugins:uninstall PLUGIN...`](#oex-pluginsuninstall-plugin)
 * [`oex plugins update`](#oex-plugins-update)
-
-## `oex hello PERSON`
-
-Say hello
-
-```
-USAGE
-  $ oex hello [PERSON] -f <value>
-
-ARGUMENTS
-  PERSON  Person to say hello to
-
-FLAGS
-  -f, --from=<value>  (required) Who is saying hello
-
-DESCRIPTION
-  Say hello
-
-EXAMPLES
-  $ oex hello friend --from oclif
-  hello friend from oclif! (./src/commands/hello/index.ts)
-```
-
-_See code: [dist/commands/hello/index.ts](https://github.com/oclif/hello-world/blob/v0.0.0/dist/commands/hello/index.ts)_
-
-## `oex hello world`
-
-Say hello world
-
-```
-USAGE
-  $ oex hello world
-
-DESCRIPTION
-  Say hello world
-
-EXAMPLES
-  $ oex hello world
-  hello world! (./src/commands/hello/world.ts)
-```
 
 ## `oex help [COMMAND]`
 

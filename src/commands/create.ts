@@ -2,11 +2,9 @@ import {Command, Flags, CliUx} from '@oclif/core'
 import {Octokit} from '@octokit/core'
 
 export default class Create extends Command {
-  static description = 'create a new issue'
+  static description = 'create a new issue\nSYNTAX\n\t → <%= config.bin %> <%= command.id %>\n\t→ <%= config.bin %> <%= command.id %> -a, --assignees=<value>, -b, --body=<value>,-f, --force,[ -l, --labels]=<value>, [-m|--milestone]=<value> [-o|--owner]=<value> [-r|--repo]=<value> [-t |--title]=<value>\n\t→ <%= config.bin %> <%= command.id %> [OWNER] [REPO] [TITLE] [BODY] '
 
-  static examples = [
-    '<%= config.bin %> <%= command.id %>',
-  ]
+  static examples = ['<%= config.bin %> <%= command.id %>']
 
   static flags = {
     // flag with a value (-n, --name=VALUE)
@@ -36,16 +34,16 @@ export default class Create extends Command {
     }
 
     const octokit = new Octokit({
-      auth: '------add token here---------',
+      auth: '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',
     })
     const result = await octokit.request('POST /repos/{owner}/{repo}/issues', {
       owner,
       repo,
       title,
-      // body: flags.body ?? args.body ?? '',
-      // assignees: flags.assignees?.split(',') ?? [],
-      // milestone: flags.milestone ?? '1',
-      // labels: flags.labels?.split(',') ?? [],
+      body: flags.body ?? args.body ?? 'empty body',
+      assignees: flags.assignees?.split(',') ?? [owner],
+      milestone: flags.milestone ?? '1',
+      labels: flags.labels?.split(',') ?? ['bug'],
     }).catch(error => this.log(error))
 
     if (result) {
