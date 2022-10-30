@@ -20,13 +20,13 @@ oclif example Hello World CLI
 <!-- usage -->
 ```sh-session
 $ npm install -g @harshna/github-issues
-$ gh-issues COMMAND
+$ issues COMMAND
 running command...
-$ gh-issues (--version)
+$ issues (--version)
 @harshna/github-issues/0.0.0 win32-x64 node-v16.13.0
-$ gh-issues --help [COMMAND]
+$ issues --help [COMMAND]
 USAGE
-  $ gh-issues COMMAND
+  $ issues COMMAND
 ...
 ```
 <!-- usagestop -->

@@ -1,6 +1,4 @@
 ```
-gh-issues login
-gh-issues all --orgs <true | false>
-gh-issues 
-
+npx issues all
+npx issues create
 ```

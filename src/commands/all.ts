@@ -1,8 +1,8 @@
 import {Command, Flags, CliUx} from '@oclif/core'
 import {Octokit} from '@octokit/core'
 
-export default class IssuesAll extends Command {
-  static description = 'describe the command here'
+export default class All extends Command {
+  static description = 'Get all your issues'
 
   static examples = [
     '<%= config.bin %> <%= command.id %>',
@@ -10,7 +10,7 @@ export default class IssuesAll extends Command {
 
   static flags = {
     // flag with a value (-n, --name=VALUE)
-    name: Flags.string({char: 'n', description: 'name to print'}),
+    columns: Flags.string({char: 'c', description: 'specify columns to be displayed: url, title, body, comments_url, labels, repository '}),
     // flag with no value (-f, --force)
     force: Flags.boolean({char: 'f'}),
   }
@@ -19,11 +19,10 @@ export default class IssuesAll extends Command {
 
   public async run(): Promise<void> {
     // const {args, flags} = await this.parse(IssuesAll)
-    CliUx.ux.prompt('What is your name?')
     const octokit = new Octokit({
-      auth: '------------------add github token here-----------',
+      auth: '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',
     })
-    const result = await octokit.request('GET /issues')
+    const result = await octokit.request('GET /issues').catch(error => this.log(error))
 
     if (result) {
       this.log('data:')
@@ -46,4 +45,3 @@ export default class IssuesAll extends Command {
     this.log('-------------------------------')
   }
 }
-

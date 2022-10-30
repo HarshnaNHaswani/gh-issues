@@ -1,4 +1,4 @@
-import inquirer from 'inquirer'
+// import inquirer from 'inquirer'
 import {Command, Flags, CliUx} from '@oclif/core'
 import {Octokit} from '@octokit/core'
 
@@ -38,20 +38,20 @@ export default class IssuesAll extends Command {
       //   this.log(issue.repository?.full_name)
       // }
 
-      const choices = []
-      for (const key of result.data) {
-        choices.push({name: key})
-      }
+      // const choices = []
+      // for (const key of result.data) {
+      //   choices.push({name: key})
+      // }
 
-      const responses: any = await inquirer.prompt([{
-        name: 'stage',
-        message: 'select a stage',
-        type: 'list',
-        choices: choices,
-      }])
+      // const responses: any = await inquirer.prompt([{
+      //   name: 'stage',
+      //   message: 'select a stage',
+      //   type: 'list',
+      //   choices: choices,
+      // }])
 
-      const columns = Object.fromEntries(responses.map((curr:any) => [curr, {}]))
-      CliUx.ux.table(result.data, columns)
+      // const columns = Object.fromEntries(responses.map((curr:any) => [curr, {}]))
+      // CliUx.ux.table(result.data, columns)
     } else throw new Error('Error retrieving data')
 
     this.log('-------------------------------')

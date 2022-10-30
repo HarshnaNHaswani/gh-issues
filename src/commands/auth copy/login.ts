@@ -1,7 +1,6 @@
 // import {Command, Flags} from '@oclif/core'
 import {Command} from '@oclif/core'
 // import {request} from 'node:https'
-import fetch from 'node-fetch'
 // import {Octokit} from '@octokit/core'
 // import axios from 'axios'
 export default class AuthLogin extends Command {
@@ -11,10 +10,10 @@ export default class AuthLogin extends Command {
   private readonly baseUrl = 'https://github.com/login/device/code'
   private readonly headers= {'Content-Type': 'application/json',  Accept: 'application/json'}
 
-  async get() {
-    const res = await fetch(this.baseUrl, {headers: this.headers})
-    return res.json()
-  }
+  // async get() {
+  //   const res = await fetch(this.baseUrl, {headers: this.headers})
+  //   return res.json()
+  // }
 
   public async run(): Promise<void> {
     // const {args, flags} = await this.parse(AuthLogin)
@@ -28,11 +27,11 @@ export default class AuthLogin extends Command {
     // } catch (error) {
     //   this.log('An error occured', error)
     // }
-    const result = await this.get()
+    // const result = await this.get()
 
-    if (!result) {
-      throw new Error('Error retrieving data')
-    }
+    // if (!result) {
+    //   throw new Error('Error retrieving data')
+    // }
 
     this.log('-------------------------------')
     // const name = flags.name ?? 'world'
