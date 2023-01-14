@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "@google-cloud/local-auth": "2.1.0",
-    "@oclif/core": "^1.19.1",
+    "@oclif/core": "^1.24.0",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.1.4",
     "@octokit/core": "^4.1.0",
