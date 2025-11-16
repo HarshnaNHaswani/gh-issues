@@ -16,6 +16,11 @@ oclif GitHub Issues CLI
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
+
+# Preview
+
+[![Watch the demo on loom](https://cdn.loom.com/sessions/thumbnails/4d8485f3ae3a4878a5183c113e8f7a85-1667117160793-with-play.gif#t=0.1)](https://www.loom.com/share/4d8485f3ae3a4878a5183c113e8f7a85)
+
 # Usage
 <!-- usage -->
 ```sh-session
